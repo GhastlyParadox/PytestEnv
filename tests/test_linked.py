@@ -1,6 +1,6 @@
 import pytest
 from linked_lists.linked import SLList
-from src.value_gen.values import ValueGenerator
+from value_gen.values import ValueGenerator
 
 
 def test_insertAtHead():
