@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools >= 63.4.2", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+pythonpath = [
+  "src"
+]
+addopts = "-ra -q -vv"
+testpaths = [
+    "tests"
+]
+
+[tool.coverage.run]
+source = ["src"]
+
+[tool.mypy]
+mypy_path = "src"
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
