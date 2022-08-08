@@ -1,4 +1,6 @@
+from types import new_class
 from typing import List, Union
+
 
 
 class SLNode:
@@ -8,7 +10,7 @@ class SLNode:
         self.next = next
 
 
-class SLList:
+class CLinkedList:
 
     def __init__(self, tail=None):
         self.tail = tail
@@ -20,7 +22,7 @@ class SLList:
             if current is self.tail:
                 break
             current = current.next
-    
+
     def __len__(self):
         count = 0
         node = self.tail.next
@@ -35,6 +37,40 @@ class SLList:
     def values(self):
         return ' -> '.join([str(node.value) for node in self])
 
+    def insertAtTail(self, data: Union[int, List[int]]):
+
+        if isinstance(data, list):
+
+            for v in data:
+                if self.tail is None:
+                    newNode = SLNode(v)
+                    self.tail = newNode
+                    self.tail.next = self.tail 
+                else:
+                    prev_tail = self.tail
+                    curr_head = self.tail.next
+                    newNode = SLNode(v)
+                    self.tail = prev_tail.next = newNode
+                    self.tail.next = curr_head
+  
+            return self.tail
+
+        else:
+
+            if self.tail is None:
+                newNode = SLNode(data)
+                self.tail = newNode
+                self.tail.next = self.tail
+            else:
+                prev_tail = self.tail
+                curr_head = self.tail.next
+                newNode = SLNode(data)
+                self.tail = prev_tail.next = newNode
+                self.tail.next = curr_head
+            
+            return self.tail
+
+
     def insertAtHead(self, data: Union[int, List[int]]):
 
         if isinstance(data, list):
@@ -42,7 +78,7 @@ class SLList:
                 if self.tail is None:
                     newNode = SLNode(v)
                     self.tail = newNode
-                    self.tail.next = self.tail
+                    self.tail.next = self.tail 
                   
                 else:
                     self.tail.next = SLNode(v, self.tail.next)
@@ -60,10 +96,23 @@ class SLList:
             return self.tail.next
 
     
-def main():
+    def getNodeByIndex(self, index: int):
+        
+        if index < 0 or index > self.__len__(): 
+            return None
+        
+        if self.tail:
+            if self.tail is self.tail.next:
+                return self.tail
+            curr = self.tail.next
+            for i in range(index):
+                curr = curr.next
+            return curr
 
-    pass
     
+def main():
+    pass
+
 
 if __name__ == "__main__":
     
